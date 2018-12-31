@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="charset=utf-8" />
+<title>mr_yao</title>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<script>
+username = password = null;
+unRead={}
+</script>
+<!--登录成功之后的页面start-->
+<div class="main_inner">
+	<div class="panel" id="panel">
+		<!--BEGIN header-->
+		<div class="header">
+			<div class="avatar">
+				<img class="img" src="images/git.png">
+			</div>
+			<div class="info">
+				<h3 class="nickname">
+					<span class="display_name ng-binding">Nobody</span>
+					<a class="opt" href="javascript:;" id="logout"><i class="fa fa-power-off"></i></a>
+				</h3>
+
+			</div>
+		</div>
+		<!--END header-->
+
+		<!--BEGIN search-->
+		<div class="search_bar" id="search_bar">
+			<i class="fa fa-search" id="searchJoin"></i>
+			<input class="frm_search ng-isolate-scope ng-pristine ng-valid" value="mryao" type="text" id='joinInput' placeholder="搜索">
+		</div>
+		<!--END search-->
+
+		<!--BEGIN tab-->
+		<div class="tab" >
+			<div class="tab_item">
+				<a class="chat" title="聊天" href="javascript:void(0)" id="chatOp"><i class="fa fa-comments"></i><span class="commentsTips"></span></a>
+			</div>
+		   <div class="tab_item ng-scope">
+				<a class="chat"  title="群组" href="javascript:void(0)"><i class="fa fa-group" ></i></a>
+			</div><!-- end ngIf: isShowReader -->
+			<div class="tab_item no_extra">
+				<a class="chat"  title="通讯录" href="javascript:void(0)"><i class="fa fa-address-book" ></i></a>
+			</div>
+		</div>
+		<!--END tab-->
+	<div class="nav_view" style="visibility: visible; width: auto;">
+		<div class="scroll-wrapper chat_list scrollbar-dynamic" style="position: relative;">
+		<!--聊天列表-->
+		  <div jquery-scrollbar="" class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible operations" id="chatList" data-username="" style="margin-bottom: 0px; margin-right: 0px; height: 473px;">
+			<h5 style="color:#ff5555;text-align:center" class="showEmpty">当前无聊天记录</h5>
+		  </div>
+		  <!--朋友和聊天列表over-->
+		  <!--查询结果列表-->
+		  <div class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible operations" id="searchResult" style="display:none;margin-bottom: 0px; margin-right: 0px; height: 473px;">
+			
+		  </div>
+		  <!--查询结果列表over-->
+		  <!--群组-->
+		  <div class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible operations" id="groupop" style="display:none;margin-bottom: 0px; margin-right: 0px; height: 473px;">
+			<h3 align="center" style="    border-top: solid 1px #828180;padding-top: 5px;"><i class='fa fa-plus-square' id="addGroup" style="color: #68ccf3;"></i></h3>
+			
+		  </div>
+		  <!--群组over-->
+		  <!--联系人-->
+		  <div class="chat_list scrollbar-dynamic scroll-content scroll-scrolly_visible operations" id="addressList" style="display:none;margin-bottom: 0px; margin-right: 0px; height: 473px;">
+			
+		  </div>
+		  <!--联系人over-->
+		</div>
+	</div>
+	</div>
+	<!--右侧聊天内容整体布局-->
+	<div ui-view="contentView" style="height:100%;" class="ng-scope">
+		<div id="chatArea" class="box chat ng-scope">
+		<!--右侧聊天内容头部-->
+			<div class="box_hd">
+			  <div id="chatRoomMembersWrap"></div>
+				<div class="title_wrap">
+					<div class="title poi">
+						<a class="title_name ng-binding">欢迎来到姚小桑的聊天室</a>
+
+						<i class="web_wechat_down_icon"></i>
+					</div>
+				</div>
+
+			</div>
+			<!--右侧聊天内容展示区-->
+			<div class="scroll-wrapper box_bd chat_bd scrollbar-dynamic">
+				<div jquery-scrollbar="" id="msgContent"class="box_bd chat_bd scrollbar-dynamic scroll-content"  style="margin-bottom: 0px; margin-right: 0px; height: 431px;">
+				<h4 align="center">未选择聊天</h4>
+				</div>
+
+			</div>
+			<!--右侧聊天内容输入区域-->
+			<div class="box_ft ng-scope" >
+				<div class="toolbar" id="tool_bar">
+					
+					<a class="web_wechat_pic js_fileupload ng-isolate-scope webuploader-container"  href="javascript:;" title="表情"><div class="webuploader-pick"></div>
+                        <div id="rt_rt_1brm7et7a1daf9fv1cdn16qfbhm1" style="position: absolute; top: 4px; left: 10px; width:auto; height: 30px; overflow: hidden; bottom: auto; right: auto;"><i class="fa fa-heart" style="color:#black"></i></div></a>
+				</div>
+				<div class="content ng-isolate-scope" >
+					<pre id="editArea"  class="flex edit_area ng-isolate-scope ng-pristine ng-valid" contenteditable="false"  ></pre>
+					<span class="caret_pos_helper" id="caretPosHelper"></span>
+				</div>
+
+				<div class="action">
+					<a class="btn btn_send" id="btn_send" href="javascript:void(0);" >发送</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--登录成功之后的页面 end-->
+<!--登录以及一些提醒消息或者表单的悬浮层 start-->
+<div id="floatDiv">
+    <div id="login">
+    <div class="wrapper">
+        <div class="login">
+            <form action="" method="post" class="container offset1 loginform" id="loginform">
+                
+                <div class="pad" id="logPad">
+                    <h2 style="text-align: center;color:olive">chat_with_yao</h2>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="email" class="control-label  fa fa-envelope"></label>
+                            <input id="email" type="text" name="email" placeholder="lockey" value="mryao" tabindex="1" autofocus="autofocus" class="form-control input-medium">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="password" class="control-label fa fa-asterisk"></label>
+                            <input id="password" type="password" name="password" placeholder="Password" value="a" tabindex="2" class="form-control input-medium">
+                        </div>
+                    </div>
+                    <div class="control-group" style="display:none" id='passConfirm'>
+                        <div class="controls">
+                            <label for="password" class="control-label fa fa-asterisk"></label>
+                            <input id="passwordConfirm" type="password" name="password" placeholder="Confirm Password" value="a" tabindex="2" class="form-control input-medium">
+                        </div>
+                    </div>
+					<div id="tipsDiv"></div>
+                </div>
+                <div class="form-actions">
+				<a href="javascript:void(0)" tabindex="5" class="btn pull-left btn-link text-muted" >Forgot password?</a>
+				<a href="javascript:void(0)" tabindex="6" class="btn btn-link text-muted signupin">Sign Up</a>
+				<a href="javascript:void(0)" tabindex="6" class="btn btn-link text-muted signupin" style="display:none">Sign In</a>
+                <button type="button" tabindex="4" class="btn btn-primary logreg" id="loginBtn">Login</button>
+				<button type="button" tabindex="4" class="btn btn-primary logreg" id="regBtn" style="display:none">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+	</div>
+    <div class="language-option">
+        <span class="language-option-item ng-binding ng-scope" ng-repeat="lang in login.LANGS track by lang.type" ng-click="login.changeLng(lang.type)">简体中文</span>
+        <span class="language-option-item ng-binding ng-scope" ng-repeat="lang in login.LANGS track by lang.type" ng-click="login.changeLng(lang.type)">繁體中文</span>
+        <span class="language-option-item ng-binding ng-scope" ng-repeat="lang in login.LANGS track by lang.type" ng-click="login.changeLng(lang.type)">English</span>
+    </div>
+    <div class="networkdetect ng-binding" ng-click="login.networkdetect()">登录异常? 点此检测</div>
+</div>
+<!--登录以及一些提醒消息或者表单的悬浮层 end-->
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
